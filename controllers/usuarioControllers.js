@@ -1,6 +1,6 @@
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const { criarUsuario, obterUsuario, obterTodosUsuarios, buscarUsuarioEmail } = require('../models/usuario');
+const { criarUsuario, buscarUsuarioEmail } = require('../models/usuario');
 
 const criarUsuarioController = async (req, res) => { 
     const { nome, email, senha } = req.body;
@@ -34,22 +34,4 @@ const criarUsuarioController = async (req, res) => {
 
 
 
-
-const buscarTodosUsuarios = async (req, res) => {
-    const usuarios = await obterTodosUsuarios();
-    res.json({ usuarios });
-};
-
-const buscarUsuario = async (req, res) => {
-    const { id } = req.params;
-    const usuario = await obterUsuario(id);
-    if (!usuario) {
-        return res.status(404).json({ mensagem: 'Usuário não encontrado' });
-    }
-    const { nome, email } = usuario;
-    res.json({ nome, email });
-  };
-
-
-
-module.exports = { criarUsuarioController, buscarTodosUsuarios, buscarUsuario};
+module.exports = { criarUsuarioController };

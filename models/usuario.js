@@ -15,15 +15,6 @@ const buscarUsuarioEmail = async (email) => {
   return result.rows[0];
 };
 
-const obterUsuario = async (id) => {
-  const result = await pool.query('SELECT * FROM usuarios WHERE id = $1', [id]);    
-  return result.rows[0];    
-};
-
-const obterTodosUsuarios = async () => {
-  const result = await pool.query('SELECT * FROM usuarios');
-  return result.rows;
-};
 
 
-module.exports = { criarUsuario, obterUsuario, obterTodosUsuarios, buscarUsuarioEmail};
+module.exports = { criarUsuario, buscarUsuarioEmail};
