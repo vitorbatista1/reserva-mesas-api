@@ -15,10 +15,11 @@ const obterMesaPorNumero = async (numero) => {
 
 const atualizarMesa = async (mesa) => {
   await pool.query(
-      'UPDATE mesas SET status = $1, data_reserva = $2, tempo_reserva = $3 WHERE numero = $4',
-      [mesa.status, mesa.data_reserva, mesa.tempo_reserva, mesa.numero]
+    'UPDATE mesas SET status = $1, data_reserva = $2, tempo_reserva = $3 WHERE numero = $4',
+    [mesa.status, mesa.dataReserva, mesa.tempoReserva, mesa.numero] // Corrigindo os nomes das propriedades
   );
 };
+
 
 
 const listarTodasMesas = async () => {
