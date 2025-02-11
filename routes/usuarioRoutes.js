@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const { criarUsuarioController } = require('../controllers/usuarioControllers');
+const { criarUsuarioController, loginController } = require('../controllers/usuarioControllers');
+const verificaCorpo = require('../middleware/verificarCorpoRequisicao')
 
-router.post('/registrar', criarUsuarioController);
+router.post('/register', verificaCorpo, criarUsuarioController);
+router.post('/login', loginController);
 
 module.exports = router;

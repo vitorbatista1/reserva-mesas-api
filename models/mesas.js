@@ -8,9 +8,22 @@ const criarMesa = async ( numero, capacidade, status) => {
   return result.rows[0];
 };
 
+const obterMesaPorNumero = async (numero) => {
+  const result = await pool.query('SELECT * FROM mesas WHERE numero = $1', [numero]);
+  return result.rows[0];
+};
+
+const atualizarMesa = async (mesa) => {
+  await pool.query(
+      'UPDATE mesas SET status = $1, data_reserva = $2, tempo_reserva = $3 WHERE numero = $4',
+      [mesa.status, mesa.data_reserva, mesa.tempo_reserva, mesa.numero]
+  );
+};
+
+
 const listarTodasMesas = async () => {
   const result = await pool.query('SELECT * FROM mesas');
   return result.rows;
 };
 
-module.exports = { criarMesa, listarTodasMesas };
+module.exports = { criarMesa, listarTodasMesas, obterMesaPorNumero, atualizarMesa};
